@@ -1,0 +1,432 @@
+<head>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+	<meta charset=utf-8 />
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<link href='https://api.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' rel='stylesheet' />
+
+
+</head>
+<style>
+	 body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+
+<body>
+	
+<div id='map'></div>
+	<script src='usStates.js'></script>
+	<script src='HealthMattersGeoJson.js'></script>
+	<script>
+		
+		mapboxgl.accessToken = 'pk.eyJ1IjoiYW5uYWxlZWJhcmQiLCJhIjoiY2lrOHFpcGt5MDN6a3V2a245YWJ2enpzMiJ9.2bPK_dWaz3fkEtISPdvQog';
+	
+		
+		var map = new mapboxgl.Map({
+			container: 'map', // container id
+			style: 'mapbox://styles/mapbox/basic-v9', //stylesheet location
+			center: [-85.5, 38], // starting position
+			zoom: 6.2 // starting zoom
+		});
+		var stores = {
+			"type": "FeatureCollection",
+			"crs": {
+				"type": "name",
+				"properties": {
+					"name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+				}
+			},
+
+			"features": [
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Easter Seals WKY",
+						"street": "801 N 29th St",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Paducah",
+						"zip": "42001",
+						"link_one": "http:\/\/www.easterseals.com\/westkentucky\/",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "ROOFTOP"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-88.6381368, 37.079647]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Marshall County Exceptional Center",
+						"street": "198 Old Symsonia Road",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Benton",
+						"zip": "42025",
+						"link_one": "http:\/\/www.m-c-e-c.org\/",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "RANGE_INTERPOLATED"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-88.3671086, 36.8652178]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Puzzle Pieces",
+						"street": "1512 Frederica Street",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Owensboro",
+						"zip": "42301",
+						"link_one": "http:\/\/www.puzzle-pieces.org\/",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "ROOFTOP"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-87.113073, 37.761458]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Center Piece",
+						"street": "5010 Back Square Drive",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Owensboro",
+						"zip": "42301",
+						"link_one": "http:\/\/www.puzzle-pieces.org\/center-piece.html",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "ROOFTOP"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-87.1303159, 37.721201]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Bluegrass Oakwood",
+						"street": "2441 South Hwy 27",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Somerset",
+						"zip": "42501",
+						"link_one": "http:\/\/www.bluegrass.org\/entities\/oakwood\/mission.shtml",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "RANGE_INTERPOLATED"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-84.5813246, 36.9559744]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Tri-Generations - Somerset",
+						"street": "90 Venture Way",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Somerset",
+						"zip": "42503",
+						"link_one": "http:\/\/www.tri-generations.org\/",
+						"link_two": "https:\/\/www.youtube.com\/watch?v=sn6SaXvEvlc",
+						"addrtype": "street_address",
+						"addrlocat": "RANGE_INTERPOLATED"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-84.6300158, 37.053823]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "A1 Case Management",
+						"street": "110 N. 1st St",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Danville",
+						"zip": "40422",
+						"link_one": "https:\/\/www.facebook.com\/A1-Case-Management-403604416355798\/",
+						"link_two": "https:\/\/www.youtube.com\/watch?v=u7BCp4zRh44",
+						"addrtype": "street_address",
+						"addrlocat": "RANGE_INTERPOLATED"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-84.7697936, 37.6460022]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Southwest Center",
+						"street": "8009 Terry Road",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Louisville",
+						"zip": "40258",
+						"link_one": "http:\/\/www.swcky.org\/",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "ROOFTOP"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-85.8721789, 38.1369416]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "St. Mary's Center",
+						"street": "14207 Aiken Road",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Louisville",
+						"zip": "40253",
+						"link_one": "http:\/\/www.saintmaryscenter.org\/",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "ROOFTOP"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-85.490675, 38.26312]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Volunteers of America Northern Kentucky",
+						"street": "8172 Mall Rd",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Florence",
+						"zip": "41017",
+						"link_one": "http:\/\/www.voa.org\/",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "ROOFTOP"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-84.64927, 38.9836435]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Day Spring Community Living",
+						"street": "3430 Day Spring Court",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Louisville",
+						"zip": "40213",
+						"link_one": "http:\/\/dayspringky.org\/",
+						"link_two": null,
+						"addrtype": "premise",
+						"addrlocat": "ROOFTOP"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-85.714593, 38.2150141]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "D&S Community Services",
+						"street": "259 R Old Flemingsburg Road",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Morehead",
+						"zip": "40351",
+						"link_one": "http:\/\/www.dscommunity.com\/",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "ROOFTOP"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-83.4429019, 38.1790363]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Reach For The Stars",
+						"street": "434 Hotchkiss Street",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Campbellsville",
+						"zip": "42718",
+						"link_one": "http:\/\/www.rftstars.org\/",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "RANGE_INTERPOLATED"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-85.3407021, 37.341952]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Tri-Generations - Campbellsville",
+						"street": "436 Hotchkiss Street",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Campbellsville",
+						"zip": "42718",
+						"link_one": "http:\/\/www.tri-generations.org\/",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "RANGE_INTERPOLATED"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-85.3406854, 37.3419604]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Dreams With Wings",
+						"street": "1579 Bardstown Rd",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Louisville",
+						"zip": "40205",
+						"link_one": "http:\/\/www.dreamswithwings.org\/",
+						"link_two": null,
+						"addrtype": "premise",
+						"addrlocat": "ROOFTOP"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-85.7049968, 38.2311026]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "AlmCare",
+						"street": "409 N Miles Street",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Elizabethtown",
+						"zip": "42701",
+						"link_one": "http:\/\/www.almcare.org\/",
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "RANGE_INTERPOLATED"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-85.8586251, 37.7006893]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Blessed Assurance Communtiy Services",
+						"street": "10233 Old Boston Rd",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Boston",
+						"zip": "40107",
+						"link_one": null,
+						"link_two": null,
+						"addrtype": "street_address",
+						"addrlocat": "RANGE_INTERPOLATED"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-85.6354337, 37.7972761]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Muhlenberg County Opportunity Center",
+						"street": "615 Opportunity Way",
+						"state": "Kentucky",
+						"country": "United States",
+						"city": "Greenville",
+						"zip": "42345",
+						"link_one": "http:\/\/www.muhlon.com\/clients\/mcoc\/index.html",
+						"link_two": "https:\/\/www.facebook.com\/OCchanginglives\/",
+						"addrtype": "street_address",
+						"addrlocat": "RANGE_INTERPOLATED"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-87.17582, 37.2225332]
+					}
+			},
+				{
+					"type": "Feature",
+					"properties": {
+						"name": "Options for Individuals",
+						"street": "Inc",
+						"state": "2200 Envoy CircleÿSuite 2201",
+						"country": "Kentucky",
+						"city": "United States",
+						"zip": "Louisville",
+						"link_one": "40299",
+						"link_two": "http:\/\/optionsforindividuals.org\/",
+						"addrtype": "administrative_area_level_1",
+						"addrlocat": "APPROXIMATE"
+					},
+					"geometry": {
+						"type": "Point",
+						"coordinates": [-84.2700179, 37.8393332]
+					}
+			}
+]
+		}
+
+
+		map.on('load', function (e) {
+			// Add the stores data as a source
+			map.addSource('places', {
+				type: 'geojson',
+				data: stores
+			});
+
+			// Add a layer to the map with styling rules to render the source
+			map.addLayer({
+				id: 'locations',
+				type: 'symbol',
+				source: 'places',
+				layout: {
+					'icon-image': 'doctor-15',
+					'icon-allow-overlap': true
+				}
+			});
+		});
+
+
+		
+	</script>
+
+
+</body>
